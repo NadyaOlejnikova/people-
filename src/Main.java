@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -10,13 +9,22 @@ public class Main {
 
       */
         List<Person> p1 = new ArrayList<>();
-        p1.add(new Person("Хатын", "Ив Зира Бор кызы", 25));
-        p1.add(new Person("Ребьят", "Ив Зира Бор", 19));
-        p1.add(new Person("Ребьят", "Ив Зира Бо кызы кызы ", 18));
-        p1.add(new Person("Хатын", "Ив Зира Бора кызы кызы кызы", 50));
-        //System.out.println(p1);
-        Collections.sort(p1, new PersonLength());
-        System.out.println(p1);
+        p1.add(new Person("Хатын", "Ив", 25));
+        p1.add(new Person("Ребьят", "Ив о ооо", 15));
+        p1.add(new Person("Ребьят", "Ив", 16));
+        p1.add(new Person("Хатын", "Ив", 50));
 
+// сортировку надо
+        p1.sort((o1, o2) -> {
+            int wordsLength = (o1.getSurname().split(" ").length);
+            int wordsLength2 = (o2.getSurname().split(" ").length);
+            if (wordsLength == wordsLength2) {
+                return Integer.compare(o2.getAge(), o1.getAge());
+            }
+            return wordsLength > wordsLength2 ? -1 : 1;
+        });
+        System.out.println(p1);
     }
+
 }
+
