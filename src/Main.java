@@ -15,24 +15,16 @@ public class Main {
         p1.add(new Person("Хатын", "Ив", 50));
 
 // сортировку надо
-        Comparator<Person> comparator;
-        comparator = Main::compare;
-        Collections.sort(p1, comparator);
+        p1.sort((o1, o2) -> {
+            int wordsLength = (o1.getSurname().split(" ").length);
+            int wordsLength2 = (o2.getSurname().split(" ").length);
+            if (wordsLength == wordsLength2) {
+                return Integer.compare(o2.getAge(), o1.getAge());
+            }
+            return wordsLength > wordsLength2 ? -1 : 1;
+        });
         System.out.println(p1);
-
     }
-
-    // про возраст ....
-    public static int compare(Person o1, Person o2) {
-        int wordsLength = (o1.getSurname().split(" ").length);
-        int wordsLength2 = (o2.getSurname().split(" ").length);
-
-        if (wordsLength == wordsLength2) {
-            return Integer.compare(o2.getAge(), o1.getAge());
-        }
-        return wordsLength > wordsLength2 ? -1 : 1;
-    }
-
 
 }
 
